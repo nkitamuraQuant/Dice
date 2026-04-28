@@ -12,8 +12,10 @@ LIB_MKL = -lblas -llapack #-L$(MKL)/lib/intel64/ -lmkl_intel_ilp64 -lmkl_gnu_thr
 INCLUDE_BOOST = -I$(BOOST)/include #-I$(BOOST)
 LIB_BOOST = -L$(BOOST)/lib -L$(BOOST)/stage/lib
 
-INCLUDE_HDF5 = -I$(HDF5)/include
-LIB_HDF5 = -L$(HDF5)/lib -lhdf5
+#INCLUDE_HDF5 = -I$(HDF5)/include
+#LIB_HDF5 = -L$(HDF5)/lib -lhdf5
+INCLUDE_HDF5 = -I/usr/include/hdf5/serial
+LIB_HDF5 = -L/usr/lib/aarch64-linux-gnu/hdf5/serial -lhdf5
 
 COMPILE_NUMERIC = no
 
@@ -21,7 +23,7 @@ FLAGS_BASE = -std=c++14 -O3 -g -w -fPIC -I. -I$(EIGEN) $(INCLUDE_BOOST) $(INCLUD
 #FLAGS_BASE = -std=c++14 -g -w -fPIC -I. -I$(EIGEN) $(INCLUDE_BOOST) $(INCLUDE_HDF5)
 LFLAGS_BASE = $(LIB_BOOST)
 ifeq ($(HAS_AVX2), yes)
-	FLAGS_BASE += -march=core-avx2
+	FLAGS_BASE += -march=armv8.5-a
 endif
 
 ifeq ($(USE_INTEL), yes)
