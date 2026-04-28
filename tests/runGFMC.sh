@@ -14,10 +14,10 @@ cd $here/GFMC/hubbard_18_tilt/
 ../../clean.sh
 printf "...running hubbard_18_tilt uhf\n"
 $MPICOMMAND $VMCPATH > vmc.out
-python2 ../../testEnergy.py 'vmc' $tol
+python ../../testEnergy.py 'vmc' $tol
 printf "...running hubbard_18_tilt gfmc\n"
 $MPICOMMAND $GFMCPATH > gfmc.out
-python2 ../../testEnergy.py 'gfmc' $tol
+python ../../testEnergy.py 'gfmc' $tol
 if [ $clean == 1 ]
 then    
     ../../clean.sh
